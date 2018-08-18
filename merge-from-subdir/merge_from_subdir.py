@@ -8,10 +8,10 @@ from scipy import misc
 
 parser = argparse.ArgumentParser(description='PyTorch implementation of DiscoGAN')
 
-parser.add_argument('--input_path', type=str, default='./Desktop', help='Set the input images path')
-parser.add_argument('--output_path', type=str, default='./dataset', help='Set the output images path')
-parser.add_argument('--width', type=int, default=256, help='Set the image_size')
-parser.add_argument('--height', type=int, default=256, help='Set the image_size')
+parser.add_argument('--input_path', type=str, default='./input', help='Set the input images path')
+parser.add_argument('--output_path', type=str, default='./output', help='Set the output images path')
+parser.add_argument('--width', type=int, default=512, help='Set the image_size')
+parser.add_argument('--height', type=int, default=512, help='Set the image_size')
 parser.add_argument('--dir_A', type=str, default='dir_A', help='Set the derectory_A')
 parser.add_argument('--dir_B', type=str, default='dir_B', help='Set the derectory_B')
 
@@ -59,16 +59,15 @@ def read_directory(input_path): # 디렉토리 안의 파일 모두 저장 후 �
     return data
 
 
-def save_dataset(A,B):
+def save_dataset(data, type):
     print("save A & B")
 
-    for i in range(0,min(len(A), len(B))):
-        for j in range(0, min(len(A[i]), len(B[i]))):
+    for i in range(0,len(data)):
+        for j in range(0, len(data)):
             global image_cnt
 
             print(image_cnt, "save image")
-            misc.imsave(os.path.join(args.output_path, "A", str(image_cnt) + ".png"), A[i][j])
-            misc.imsave(os.path.join(args.output_path, "B", str(image_cnt) + ".png"), B[i][j])
+            misc.imsave(os.path.join(args.output_path, type, str(image_cnt) + ".png"), data[i][j])
             image_cnt = image_cnt + 1
 
 
@@ -90,7 +89,8 @@ def search_directory(input_path, name):
                 search_directory(os.path.join(input_path, name), name)
 
     if datasetA is not None:
-        save_dataset(datasetA, datasetB)
+        save_dataset(datasetA, "A")
+        save_dataset(datasetB, "B")
 
 
 
