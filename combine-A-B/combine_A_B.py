@@ -10,8 +10,8 @@ parser.add_argument('--input_path', type=str, default='./input', help='Set the i
 parser.add_argument('--output_path', type=str, default='./output', help='Set the output images path')
 parser.add_argument('--width', type=int, default=256, help='Set the image_size')
 parser.add_argument('--height', type=int, default=256, help='Set the image_size')
-parser.add_argument('--dir_A', type=str, default='./dir_A', help='Set the derectory_A')
-parser.add_argument('--dir_B', type=str, default='./dir_B', help='Set the derectory_B')
+parser.add_argument('--dir_A', type=str, default='dir_A', help='Set the derectory_A')
+parser.add_argument('--dir_B', type=str, default='dir_B', help='Set the derectory_B')
 
 args = parser.parse_args()
 
