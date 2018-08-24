@@ -63,7 +63,7 @@ def save_dataset(data, type):
     print("save A & B")
 
     for i in range(0,len(data)):
-        for j in range(0, len(data)):
+        for j in range(0, len(data[i])):
             global image_cnt
 
             print(image_cnt, "save image")
